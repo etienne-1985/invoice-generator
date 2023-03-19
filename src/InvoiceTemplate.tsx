@@ -27,10 +27,13 @@ const Invoicee = ({ templateLabels, clientDetails }) => {
     </div>)
 }
 
-const InvoiceFullNumber = ({ templateLabels, invoiceFullNb }: { templateLabels: TemplateLabels, invoiceFullNb }) => {
+const InvoiceInfo = ({ templateData, invoiceFullNb, invoiceDate }: { templateData: TemplateData, invoiceFullNb, invoiceDate }) => {
+    const { Config, Labels } = templateData
     return (<div style={{ margin: "16px" }}>
-        <h1 className="font-bold">{templateLabels.invoice}</h1>
+        <h1 className="font-bold">{Labels.invoice}</h1>
         <p>N° {invoiceFullNb}</p>
+        <h1 className="font-bold">{Labels.date}</h1>
+        <p>{invoiceDate.toLocaleDateString(Config.Locale, Config.DateFormat)}</p>
     </div>)
 }
 
@@ -82,7 +85,7 @@ export const InvoiceTemplate = ({ templateData, userData }: { templateData: Temp
     return (<div id="invoice-document" style={{ height: "100%", display: "flex", flexDirection: "column" }} >
         <div id="invoice-top" style={{ display: 'flex' }}>
             <div id="invoice-title">
-                <InvoiceFullNumber invoiceFullNb={invoiceFullNb} templateLabels={templateData.Labels} />
+                <InvoiceInfo templateData={templateData} invoiceFullNb={invoiceFullNb} invoiceDate={currentDate} />
             </div>
             <div style={{ marginLeft: 'auto', textAlign: 'end' }}>
                 <Invoicer templateLabels={templateData.Labels} userCompanyDetails={userData.company} />
