@@ -3,24 +3,24 @@
  */
 
 export interface UserData {
-    CompanyDetails: {
+    company: {
         name: string,
-        id?: string,                // SIRET pour entreprise française
-        vatNb?: string,             // N° TVA intracommunautaire pour assujetis
-        streetAddress: string,
+        registrationNumber?: string,                // SIRET pour entreprise française
+        vatNumber?: string,             // N° TVA intracommunautaire pour assujetis
+        street: string,
         city: string,
         email: string,
     },
-    CompanyActivity: {
-        product: string,
-        unitPrice: string,
+    workActivity: {
+        billedService: string,
+        unitPrice: number,
     },
-    PaymentDetails: {
+    paymentDetails: {
         bankIBAN: string,
         bankBIC: string,
     },
     // Details about billed client
-    ClientDetails: {
+    client: {
         name: string,
         street: string,
         city: string,

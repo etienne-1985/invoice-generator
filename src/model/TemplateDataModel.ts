@@ -3,18 +3,23 @@
  */
 
 export interface TemplateLabels {
-    companyStatus?: string,  // optional
-    companyIdLabel?: string, // company identification number
-    vat: string,    // (VAT, GST, ...) adapt to your country 
+    companyRegistration?: string, // SIRET in french
+    vat: string,    // VAT or GST depending on country
     invoice: string,
     date: string,
     billTo: string,
+    payment: string,
     bankIBAN: string,
     bankBIC: string,
+    tableUnitPrice: string,
+    tableBilledService: string,
+    tableQuantity: string,
+    tableTotal: string,
+    tableBilledAmount: string
 }
 
 export interface TemplateDatafields {
-    nonApplicableVAT: string,
+    vatStatement: string,
     paymentTerm: string,
     advancedPaimentDiscount: string,
     latePaymentPenalties: string,

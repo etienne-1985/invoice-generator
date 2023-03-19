@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@page {
+    /* size: A4; */
+    margin: 0;
+}
+@media print, screen {
+    body{
+        width: 210mm;
+        height: 297mm;
+        /* margin: 30mm 45mm 30mm 45mm;  */
+        margin: auto;
+        margin-top: 20mm;
+        margin-bottom: 20mm;
+   } 
+}
+
+#app {
+    height: 100%
+}

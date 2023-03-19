@@ -1,50 +1,38 @@
 # invoice-generator
-Invoice templates generated from HTML/CSS using React and Tailwind 
+Invoice templates generated from HTML/CSS 
 
-# Invoice customization
+# Customization
 
-## Defaults settings
+The defaults are set to match freelance activity with unique client, month billed service, VAT excluded. 
 
-By default invoice template is made for freelancer with unique client and activity.
-and is preset to comply with french legislation
+## Template data
 
-Also:
-- company running under EI ("Entreprise Individuel") french status
-- monthly billing of service 
-- no GST (or VAT) (like client located outside EU for french)
+Fixed data like template labels which can be translated:
+`template.dataset.en.ts`, `template.dataset.fr.ts`
 
-## Initial setup 
-You'll need to adjust template to your activity. These need to be done only once
+## User data
 
-Configuration is splitted in:
-- user settings: personal information about your own company, the client, day rate of your activity
-- template settings: more general template customizations
+Contains fields for setting invoicer details, billed client, work activity...
+This must be done at invoice init by changing or copying fields from `userdata.example.ts`
 
-## Manual
+## Manual 
+Fields set at invoice generation, manually filled
 
-Fields requiring manual edit each time a new template is generated are kept to minimum:
 - invoice number: 001, 002, ...
 - billed days in the month: usually between 20 - 22 working days depending on the month,
  substracted with any days off (like public or personal holidays)
 
-## Auto
-- invoice date is automatically adjusted from current date
+or automatically generated
+ - invoice date adjusted from current date
 - a calendar is provided to help figuring out how many working days are in current month
 
-## Other template customizations: fields, labels, translations
+# French only
 
-Currently 2 invoices translations available:
-- french (french speaking clients or any clients accepting french invoices)
-- english (which is allowed by french administration) for international clients 
-
-# French related legal aspects
-
-## TVA / VAT / GST
-Vous devrez ajuster en fonction de votre situation
+## TVA
 - exonéré en franchise de base
-- assujetis mais exonéré facturation hors UE
+- ou assujetis mais exonéré (par ex: facturation hors UE)
 
 ## Mentions légales obligatoires
-- pénalités retard paiment (latePaymentPenalties)
-- paymentTerm
+- conditions de paiement
 - escompte paiement anticipé
+- pénalités retard paiment
