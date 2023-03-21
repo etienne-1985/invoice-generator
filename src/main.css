@@ -6,17 +6,32 @@
     /* size: A4; */
     margin: 0;
 }
-@media print, screen {
-    body{
+
+@media print,
+screen {
+    body {
         width: 210mm;
         height: 297mm;
         /* margin: 30mm 45mm 30mm 45mm;  */
         margin: auto;
         margin-top: 20mm;
         margin-bottom: 20mm;
-   } 
+    }
+
+    #invoice-document {
+        visibility: visible;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact !important; 
+    }
+}
+
+@media print {
+    body {
+        visibility: hidden
+    }
 }
 
 #app {
-    height: 100%
+    height: 100%;
+    border: 2px dashed lightgray;
 }

@@ -78,6 +78,7 @@ const LegalNotice = ({ templateDatafields }: { templateDatafields: TemplateDataf
 
 export const InvoiceTemplate = ({ templateData, userData }: { templateData: TemplateData, userData: UserData }) => {
     const invoiceNb = "001"
+    const billedDays = 22
     const currentDate = new Date()
     const year = "2023"
     const invoiceFullNb = `F-${year}-${invoiceNb}`
@@ -96,8 +97,8 @@ export const InvoiceTemplate = ({ templateData, userData }: { templateData: Temp
         {/* <hr className="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr> */}
         <Invoicee clientDetails={userData.client} templateLabels={templateData.Labels} />
         <hr className="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
-        <InvoiceTable templateLabels={templateData.Labels} workedDays={22} workActivity={userData.workActivity} />
-        <div style={{ marginLeft: 'auto', textAlign: 'end', marginTop: "8px" }}>
+        <InvoiceTable templateLabels={templateData.Labels} workedDays={billedDays} workActivity={userData.workActivity} />
+        <div style={{ marginLeft: 'auto', textAlign: 'end', margin: "8px" }}>
             <VatStatement templateDatafields={templateData.Datafields} />
         </div>
         <div id="invoice-bottom" style={{ marginTop: "auto" }}>
