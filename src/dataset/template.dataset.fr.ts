@@ -2,7 +2,7 @@
  * FRENCH TEMPLATE DATASET 
  **/
 
-import { Config, TemplateData, TemplateDatafields, TemplateLabels } from "../model/TemplateDataModel"
+import { Config, TemplateData, TemplateDatafields, TemplateLabels } from "../model/Template"
 
 // LABELS
 const LABELS_FR: TemplateLabels = {

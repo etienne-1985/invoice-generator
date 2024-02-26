@@ -1,7 +1,8 @@
 import React from "react"
 import { InvoiceSubtable, InvoiceTable } from "./InvoiceTable"
-import { Config, TemplateData, TemplateDatafields, TemplateLabels } from "./model/TemplateDataModel"
-import { UserData } from "./model/UserDataModel"
+import { Config, TemplateData, TemplateDatafields, TemplateLabels } from "./model/Template"
+import { UserData } from "./model/User"
+import { Billing, BillingMethod, Client } from "./model/Common"
 
 const Invoicer = ({ templateLabels, userCompanyDetails }: { templateLabels: TemplateLabels, userCompanyDetails: any }) => {
     const { name, street, city, registrationNumber, vatNumber, email } = userCompanyDetails
@@ -15,14 +16,16 @@ const Invoicer = ({ templateLabels, userCompanyDetails }: { templateLabels: Temp
     </div>)
 }
 
-const Invoicee = ({ templateLabels, clientDetails }) => {
-    const { name, street, city } = clientDetails
+const Invoicee = ({ templateLabels, clientDetails }: { templateLabels, clientDetails: Client }) => {
+    const { name, street, city, phone, registrationNumber } = clientDetails.company
     return (<div style={{ margin: 16 }}>
         <div className="font-bold">{templateLabels.billTo}</div>
         <div style={{ margin: 16 }}>
             <p>{name}</p>
             <p>{street}</p>
             <p>{city}</p>
+            {phone && <p>N° immatriculation: {registrationNumber}</p>}
+            {phone && <p>N° tél: {phone}</p>}
         </div>
     </div>)
 }
@@ -77,10 +80,16 @@ const LegalNotice = ({ templateDatafields }: { templateDatafields: TemplateDataf
 // }
 
 export const InvoiceTemplate = ({ templateData, userData }: { templateData: TemplateData, userData: UserData }) => {
-    const invoiceNb = "001"
-    const billedDays = 22
+    const invoiceNb = "002"
+    const client = "myClient"
     const currentDate = new Date()
-    const year = "2023"
+    const billing: Billing = {
+        method: BillingMethod.WEEKLY,
+        unitPrice: 300,
+        qty: 1,
+        service: "Développement logiciel"
+    }
+    const year = "2024"
     const invoiceFullNb = `F-${year}-${invoiceNb}`
 
     return (<div id="invoice-document" style={{ height: "100%", display: "flex", flexDirection: "column" }} >
@@ -95,9 +104,9 @@ export const InvoiceTemplate = ({ templateData, userData }: { templateData: Temp
         </div>
 
         {/* <hr className="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr> */}
-        <Invoicee clientDetails={userData.client} templateLabels={templateData.Labels} />
+        <Invoicee clientDetails={userData.clients[client]} templateLabels={templateData.Labels} />
         <hr className="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
-        <InvoiceTable templateLabels={templateData.Labels} workedDays={billedDays} workActivity={userData.workActivity} />
+        <InvoiceTable templateLabels={templateData.Labels} billing={billing} />
         <div style={{ marginLeft: 'auto', textAlign: 'end', margin: "8px" }}>
             <VatStatement templateDatafields={templateData.Datafields} />
         </div>

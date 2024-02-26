@@ -2,7 +2,7 @@
  * ENGLISH TEMPLATE DATASET 
  **/
 
-import { Config, TemplateData, TemplateDatafields, TemplateLabels } from "../model/TemplateDataModel"
+import { TemplateLabels, TemplateDatafields, Config, TemplateData } from "../model/Template"
 
 /*
  * TEMPLATE LABELS

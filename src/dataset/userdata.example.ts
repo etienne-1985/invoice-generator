@@ -3,7 +3,8 @@
  * Copy content below over that file and customize with personal data
  */
 
-import { UserData } from "../model/UserDataModel";
+import { BillingMethod } from "../model/Common";
+import { UserData } from "../model/User";
 
 export const USER_CUSTOM_DATA: UserData = {
     company: {
@@ -18,13 +19,18 @@ export const USER_CUSTOM_DATA: UserData = {
         bankIBAN: "1234 5678 ABCD EFGH",
         bankBIC: "1234 5678 ABCD EFGH"
     },
-    workActivity: {
-        billedService: "billed service",
-        unitPrice: 214
-    },
-    client: {
-        name: "Client name",
-        street: "street address",
-        city: "1234 CITY, COUNTRY"
+    clients: {
+        myClient: {
+            company: {
+                name: "Client name",
+                street: "street address",
+                city: "12345 CITY, COUNTRY",
+            },
+            billing: {
+                method: BillingMethod.HOURLY,
+                service: "billed service",
+                unitPrice: 0
+            }
+        }
     }
 }

@@ -1,9 +1,10 @@
-import { TemplateLabels } from "./model/TemplateDataModel"
+import { Billing } from "./model/Common"
+import { TemplateLabels } from "./model/Template"
 
-export const InvoiceTable = ({ templateLabels, workedDays, workActivity }: { templateLabels: TemplateLabels, workedDays, workActivity }) => {
+export const InvoiceTable = ({ templateLabels, billing }: { templateLabels: TemplateLabels, billing: Billing }) => {
     const { tableUnitPrice, tableBilledService, tableQuantity, tableTotal } = templateLabels
-    const { unitPrice, billedService } = workActivity
-    const subtotal = workedDays * unitPrice
+    const { unitPrice, qty, service } = billing
+    const subtotal = qty * unitPrice
     return (<>
         <div className="relative overflow-x-auto">
             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -26,10 +27,10 @@ export const InvoiceTable = ({ templateLabels, workedDays, workActivity }: { tem
                 <tbody>
                     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {billedService}
+                            {service}
                         </th>
                         <td className="px-6 py-4">
-                            {workedDays}
+                            {qty}
                         </td>
                         <td className="px-6 py-4">
                             {unitPrice}€
